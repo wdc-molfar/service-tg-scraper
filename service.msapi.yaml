@@ -1,0 +1,66 @@
+msapi: 1.0.1
+
+metadata: 
+    title: Telegram Channel Scraper. @molfar Service.
+    id: "@molfar/service/tg-scraper"
+    
+components:
+
+    schemas:
+        
+        SCRAPER_TASK:
+            type: object
+            required:
+                - type
+                - url
+            properties:
+                type:
+                    type: string
+                url:
+                    type: string
+                    format: uri-reference
+        
+        SCRAPED_MESSAGE:
+            type: object
+            required:
+                - type
+                - url
+            properties:
+                type:
+                    type: string
+                url:
+                    type: string
+                    format: uri-reference
+                metadata:
+                    type: object
+                createdAt:
+                    type: string
+                md5:
+                    type: string
+
+service:
+
+    config: 
+        amqp:
+            url:
+                type: string
+                format: uri-reference
+
+    consume:
+        amqp: 
+            $ref: "#/service/config/amqp"
+        queue:
+            exchange:
+                name: "scraper_tasks"
+                mode: fanout
+        message:
+            $ref: "#/components/schemas/SCRAPER_TASK"
+            
+    produce:
+        amqp: 
+            $ref: "#/service/config/amqp"
+        exchange:
+            name: "scraped_messages"
+            mode: fanout
+        message:
+            $ref: "#/components/schemas/SCRAPED_MESSAGE"

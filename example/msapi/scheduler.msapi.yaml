@@ -1,0 +1,29 @@
+msapi: "1.0.1"
+
+metadata: 
+  
+    id: task_queue.scheduler
+  
+    title: Планувальник завдань 
+  
+service:
+
+    produce:
+        amqp:
+            url: "amqps://xoilebqg:Nx46t4t9cxQ2M0rF2rIyZPS_xbAhmJIG@hornet.rmq.cloudamqp.com/xoilebqg"
+        
+        exchange:
+            name: scraper_tasks
+            mode: fanout
+                
+        message:
+            type: object
+            required:
+                - type
+                - url
+            properties:
+                type:
+                    type: string
+                url:
+                    type: string
+                    format: uri-reference

@@ -1,0 +1,28 @@
+{
+  "name": "@molfar/service/tg-scraper",
+  "version": "1.0.0",
+  "description": "Telegram Channels Scraper Molfar Service.",
+  "main": "service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdc-molfar/service-tg-scraper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wdc-molfar/service-tg-scraper/issues"
+  },
+  "homepage": "https://github.com/wdc-molfar/service-tg-scraper#readme",
+  "dependencies": {
+    "@molfar/amqp-client": "github:wdc-molfar/amqp-client",
+    "@molfar/csc": "github:wdc-molfar/csc",
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1"
+  }
+}

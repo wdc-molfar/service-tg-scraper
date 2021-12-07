@@ -1,0 +1,68 @@
+msapi: "1.0.1"
+
+metadata: 
+  
+    id: tg-scraper
+  
+    title: Telegram Channel Scraper
+  
+    
+service:
+    consume:
+        amqp:
+            url: "amqps://xoilebqg:Nx46t4t9cxQ2M0rF2rIyZPS_xbAhmJIG@hornet.rmq.cloudamqp.com/xoilebqg"
+        
+        queue:
+            name: scraper_tasks
+            exchange:
+                name: scraper_tasks
+                mode: fanout
+            options:
+                noAck: true    
+                
+        message:
+            type: object
+            required:
+                - type
+                - url
+            properties:
+                type:
+                    type: string
+                url:
+                    type: string
+                    format: uri-reference
+                metadata:
+                    type: object
+                createdAt:
+                    type: string
+                md5:
+                    type: string
+    produce:
+        
+        amqp:
+            url: "amqps://xoilebqg:Nx46t4t9cxQ2M0rF2rIyZPS_xbAhmJIG@hornet.rmq.cloudamqp.com/xoilebqg"
+        
+        exchange:
+            name: scraped_messages
+            mode: fanout
+            options:
+                durable: true
+                persistent: true        
+        message:
+            type: object
+            required:
+                - type
+                - url
+            properties:
+                type:
+                    type: string
+                url:
+                    type: string
+                    format: uri-reference
+                metadata:
+                    type: object
+                createdAt:
+                    type: string
+                md5:
+                    type: string
+                    
