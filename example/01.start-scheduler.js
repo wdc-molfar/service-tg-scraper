@@ -21,15 +21,15 @@ const run = async () => {
 
 	container.hold(schedulerPath, "--scheduler--")
 	const scheduler = await container.startInstance(container.getService(s => s.name == "--scheduler--"))
-	let res = await scheduler.execute("configure", schedulerConfig)
+	let res = await scheduler.configure(schedulerConfig)
 	console.log(res)
 
-	res = await scheduler.execute("start")
+	res = await scheduler.start()
 	console.log(res)
 
 	await delay(3000) 
 
-	res = await scheduler.execute("stop")
+	res = await scheduler.stop()
 	container.terminateInstance(scheduler)
 	
 }
