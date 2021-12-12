@@ -29,11 +29,11 @@ const run = async () => {
 	res = await worker1.start()
 	console.log(res)
 
-	await delay(10000)
+	// await delay(10000)
 
-	res = await worker1.stop()
+	// res = await worker1.stop()
 	
-	container.terminateAll()
+	// container.terminateAll()
 	
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "@molfar/service/tg-scraper",
+  "name": "@molfar/service-tg-scraper",
   "version": "1.0.0",
   "description": "Telegram Channels Scraper Molfar Service.",
   "main": "service.js",
