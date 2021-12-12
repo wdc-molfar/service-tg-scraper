@@ -25,7 +25,7 @@ let service = new ServiceWrapper({
                     await this.publisher.send(m)
                 })
                 
-                console.log(msg.content, `Fetch ${scrapedMessages.length} messages`)
+                console.log(`${ this.config._instance_name || this.config._instance_id} > Fetch ${scrapedMessages.length} messages from`, msg.content)
             }
 
         ])
