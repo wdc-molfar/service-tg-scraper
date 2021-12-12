@@ -9,9 +9,8 @@ let service = new ServiceWrapper({
 
     async onConfigure(config, resolve) {
         this.config = config
-
-        console.log("configure tg-scrapper", this.config._instance_id)
-
+        console.log(`configure ${ this.config._instance_name || this.config._instance_id}`)
+        
         this.consumer = await AmqpManager.createConsumer(this.config.service.consume)
 
         await this.consumer.use([
@@ -47,13 +46,13 @@ let service = new ServiceWrapper({
     },
 
     onStart(data, resolve) {
-        console.log("start tg-scrapper", this.config._instance_id)
+        console.log(`start ${ this.config._instance_name || this.config._instance_id}`)
         this.consumer.start()
         resolve({ status: "started" })
     },
 
     async onStop(data, resolve) {
-        console.log("stop tg-scrapper", this.config._instance_id)
+        console.log(`stop ${ this.config._instance_name || this.config._instance_id}`)
         await this.consumer.close()
         await this.publisher.close()
         resolve({ status: "stoped" })
